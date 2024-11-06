@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- https://coolors.co/948d9b-b279a7-d387ab-e899dc-fec9f1 -->
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Chat</title>
+		<link rel="stylesheet" href="style.css" />
+		<script>
+			const socket = new WebSocket("/socket");
+			socket.addEventListener("open", (event) => {
+				let cookies = readCookies();
+				if (cookies["authToken"]) {
+					socket.send(cookies["authToken"]);
+				} else {
+                    socket.send("authenticate");
+                }
+			});
+			socket.addEventListener("message", (event) => {
+				console.log("Message from server ", event.data);
+			});
+			let loginWindow = document.getElementById("login");
+			let chatWindow = document.getElementById("chat");
+
+			function readCookies() {
+				let cookies = {};
+				document.cookie.split("; ").forEach((item) => {
+					let data = item.split("=");
+					cookies[data[0]] = data[1];
+				});
+				return cookies;
+			}
+		</script>
+	</head>
+	<body>
+		<div id="login">
+			<div id="pfp_selector">
+				<img src="test" title="preview image" />
+			</div>
+			<div id="stacked">
+				<input type="text" placeholder="really cool username.." maxlength="25" />
+				<button id="join">join the party..</button>
+			</div>
+		</div>
+		<div id="chat">
+			<div id="messages"></div>
+			<div id="send"></div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,43 @@
+* {
+    margin:0;
+    padding:0;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: #B279A7;
+    color: #FEC9F1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#login {
+    width: 50%;
+    height: 30%;
+    background-color: #D387AB;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    
+}
+#login input[type=text] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5px;
+}
+#login #join {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5px;
+}
+#login #pfp_selector {
+    width: 20%;
+    padding: 5px;
+}
+#stacked {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+}
